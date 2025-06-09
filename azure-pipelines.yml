@@ -7,15 +7,8 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: UseJavaVersion@1
-  inputs:
-    versionSpec: '11'
-    jdkArchitecture: 'x64'
+- script: echo "This is a sample file created by the pipeline." > example.txt
+  displayName: 'Create Example File'
 
-- script: mvn clean install -X
-  displayName: 'Build and Test with Maven'
-
-- task: PublishTestResults@2
-  inputs:
-    testResultsFiles: '**/target/surefire-reports/TEST-*.xml'
-    testRunTitle: 'Java 11 Unit Tests'
+- script: cat example.txt
+  displayName: 'Display File Contents'
