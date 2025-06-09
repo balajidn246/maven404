@@ -7,11 +7,11 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: UseJavaVersion@1
+- task: JavaToolInstaller@0
   inputs:
     versionSpec: '11'
-    jdkArchitecture: 'x64'
-  displayName: 'Set up Java 11'
+    jdkArchitectureOption: 'x64'
+  displayName: 'Install Java 11'
 
 - script: |
     echo "public class HelloWorld {" > HelloWorld.java
@@ -19,15 +19,11 @@ steps:
     echo "    System.out.println(\"This is a sample Java 11 program.\");" >> HelloWorld.java
     echo "  }" >> HelloWorld.java
     echo "}" >> HelloWorld.java
-    
-    chmod 777 HelloWorld.java
 
+    chmod 777 HelloWorld.java
     javac HelloWorld.java
-    
     chmod 777 HelloWorld.class
-    
     java HelloWorld > example.txt
-    
     chmod 777 example.txt
   displayName: 'Compile and Run Java Program with Full Permissions'
 
