@@ -20,33 +20,16 @@ steps:
     echo "  }" >> HelloWorld.java
     echo "}" >> HelloWorld.java
     
-    # Give full permissions to java files
     chmod 777 HelloWorld.java
 
     javac HelloWorld.java
     
-    # Give full permissions to class files
     chmod 777 HelloWorld.class
     
     java HelloWorld > example.txt
     
-    # Give full permissions to output file
     chmod 777 example.txt
   displayName: 'Compile and Run Java Program with Full Permissions'
 
 - script: cat example.txt
   displayName: 'Display Output File Contents'
-trigger:
-  branches:
-    include:
-      - main
-
-pool:
-  vmImage: 'ubuntu-latest'
-
-steps:
-- script: echo "This is a sample file created by the pipeline." > example.txt
-  displayName: 'Create Example File'
-
-- script: cat example.txt
-  displayName: 'Display File Contents'
